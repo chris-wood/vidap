@@ -10,6 +10,7 @@ for (var i = 0; i < salaryCount; i ++) {
 }
 var averageSalary = totalSalary / salaryCount;
 
+// XXX(caw): add and then update a panel which provides basic statistics about the underlying data, and toggle whether or not it's displayed
 document.getElementById('batchSizeSelector').max = salaryCount;
 
 // Create histogram trace
