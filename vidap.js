@@ -124,4 +124,3 @@ var contexts = [
 ];
 var randomContext = contexts[Math.floor(Math.random()*contexts.length)];
 document.getElementById('contextSetup').innerHTML = randomContext;
-console.log(randomContext)
