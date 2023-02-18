@@ -1,14 +1,12 @@
 // Generate some random salary data
+// XXX(caw): fetch this from an API or read it from a CSV file locally
 var salaryCount = 500;
 var totalSalary = 0;
 var salaryValues = [];
-var maxSalary = 0;
+var maxCount = 30;
 for (var i = 0; i < salaryCount; i ++) {
   salaryValues[i] = (Math.random() * 100000) + 25000;
   totalSalary = totalSalary + salaryValues[i];
-  if (salaryValues[i] > maxSalary) {
-    maxSalary = salaryValues[i];
-  }
 }
 var averageSalary = totalSalary / salaryCount;
 
@@ -16,8 +14,8 @@ document.getElementById('batchSizeSelector').max = salaryCount;
 
 // Create histogram trace
 var salaryHistogram = {
-  x: salaryValues,
   type: 'histogram',
+  x: salaryValues,
   name: "Salary",
 };
 
@@ -25,7 +23,7 @@ var salaryHistogram = {
 var salaryQuery = {
   type: 'scatter',
   x: [averageSalary, averageSalary],
-  y: [0, maxSalary],
+  y: [0, maxCount],
   name: "Average Salary",
   line: {
     color: 'orange',
@@ -34,16 +32,32 @@ var salaryQuery = {
   }
 };
 
+// var trace1 = {
+//   x: [0, 1, 2, 3, 4, 5],
+//   y: [1.5, 1, 1.3, 0.7, 0.8, 0.9],
+//   type: 'scatter'
+// };
+// var trace2 = {
+//   x: [0, 1, 2, 3, 4, 5],
+//   y: [1, 0.5, 0.7, -1.2, 0.3, 0.4],
+//   type: 'bar'
+// };
+// var data = [trace1, trace2];
+
 var data = [salaryHistogram, salaryQuery];
 Plotly.react('vidapPlot', data, {}, {
   staticPlot: false,
 });
 
+var mode = Math.random() < 0.5;
+
 function computeAverage() {
   var batchSize = document.getElementById('batchSizeSelector').value;
   var batch = [];
-  // var selected = [];
   var totalSalary = 0;
+
+  // XXX(caw): need to make sure we don't re-sample the same values
+  // var selected = [];
   for (var i = 0; i < batchSize; i++) {
     var randomValue = salaryValues[Math.floor(Math.random()*salaryValues.length)];
     batch[i] = randomValue;
@@ -51,22 +65,37 @@ function computeAverage() {
   }
   var queryAverage = totalSalary / batchSize;
 
-  Plotly.animate('vidapPlot', {
-    data: [{
+  if (mode) {
+    Plotly.animate('vidapPlot', {
+      data: [{
+        x: [queryAverage, queryAverage],
+        y: [0, maxCount],
+      }],
+      traces: [1],
+      layout: {}
+    }, {
+      transition: {
+        duration: 500,
+        easing: 'cubic-in-out'
+      },
+      frame: {
+        duration: 500
+      }
+    })
+  } else {
+    Plotly.addTraces('vidapPlot', {
+      type: 'scatter',
       x: [queryAverage, queryAverage],
-      y: [0, maxSalary],
-    }],
-    traces: [1],
-    layout: {}
-  }, {
-    transition: {
-      duration: 500,
-      easing: 'cubic-in-out'
-    },
-    frame: {
-      duration: 500
-    }
-  })
+      y: [0, maxCount],
+      // name: "Average Salary",
+      showlegend: false,
+      line: {
+        color: 'orange',
+        dash: 'dot',
+        width: 2,
+      }
+    })
+  }
 }
 
 var contexts = [
