@@ -20,10 +20,11 @@ DAP collectors can configure a measurement task using a couple of high-level par
 - Batch size: the number of inputs over which the aggregate will be computed. Higher batch sizes generally yield better privacy, since any one user’s contribution matters less, but come at the expense of more cost.
 - Noise budget: the amount of noise or randomness introduced into the output to hide any one user’s contribution. More noise generally yields better privacy but comes at the expense of utility degradation. 
 
-Given a data set and DAP configuration, there exists a number of ways to measure the overall end-user privacy impact. 
+There are generally three ways by which we can measure the impact of these parameters:
 
-- Measure the “disclosure risk,” i.e., the probability that an attacker correctly guesses that a specific user’s contribution was included in the aggregate computation.
-- ...
+1. Privacy: TODO
+2. Utility: TODO
+3. Cost: TODO
 
 ## Scenarios
 
@@ -31,3 +32,10 @@ Given a data set and DAP configuration, there exists a number of ways to measure
 - Scenario B. Imagine you are in the census bureau and you want to determine the average salary of people in a given region. Configure DAP to compute this average such that you cannot learn any one individual’s salary contribution.
 - Scenario C: Imagine you are given a list of numbers and you want to determine the average. Configure DAP to do so in a privacy-preserving way.
 - Scenario D: Imagine you are given a list of numbers and you want to determine the average. Configure DAP to do so in a privacy-preserving way.
+
+## Questions
+
+- What sort of background do you have in security and privacy?
+- Do you write software for a profession or hobby?
+- Do you deal with or manage data in your professional life?
+- ...?

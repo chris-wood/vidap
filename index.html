@@ -28,9 +28,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h3>Context</h3>
-          <p>
-            This is a prompt for a thing. It talks about the stuff. The best question!
+          <h3>Task Description</h3>
+          <p id="contextSetup">
+
           </p>
           <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#privacyOverviewModel" aria-expanded="false" aria-controls="privacyOverviewModel">
             Learn More
@@ -44,10 +44,27 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="overviewLabel">Privacy</h4>
+                  <h4 class="modal-title" id="overviewLabel">Technical Overview</h4>
                 </div>
-                <div class="modal-body">
-                  Privacy means good. No privacy means bad.
+                <div id="privacyDescription" class="modal-body">
+                  <p>
+                    <a href="https://datatracker.ietf.org/doc/draft-ietf-ppm-dap/">DAP</a> is a system for privacy-preserving measurement. At a high level, DAP consists of users producing measurements, which are sensitive data over which an aggregate function is computed for a collector. With DAP, the collector learns the aggregate data without learning any of the individual inputs to the aggregate. This is privacy-preserving in the sense that individual inputs may be sensitive, but the aggregate output may not be.
+                  </p>
+                  <p>
+                    DAP collectors can configure a measurement task using a couple of high-level parameters:
+                  </p>
+                  <ul>
+                    <li>Batch size: the number of inputs over which the aggregate will be computed. Higher batch sizes generally yield better privacy, since any one user’s contribution matters less, but come at the expense of more cost.</li>
+                    <li>Noise budget: the amount of noise or randomness introduced into the output to hide any one user’s contribution. More noise generally yields better privacy but comes at the expense of utility degradation.</li>
+                  </ul>
+                  <p>
+                    There are generally three ways by which we can measure the impact of these parameters:
+                  </p>
+                  <ul>
+                    <li>Privacy: TODO</li>
+                    <li>Utility: TODO</li>
+                    <li>Cost: TODO</li>
+                  </ul>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -74,6 +91,7 @@
                     You did the best privacy. So good. Such little bits!
                   </div>
                   <div class="modal-footer">
+                    <button type="button" class="btn btn-default">Survey</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
