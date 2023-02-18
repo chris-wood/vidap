@@ -12,6 +12,8 @@ for (var i = 0; i < salaryCount; i ++) {
 }
 var averageSalary = totalSalary / salaryCount;
 
+document.getElementById('batchSizeSelector').max = salaryCount;
+
 // Create histogram trace
 var salaryHistogram = {
   x: salaryValues,
@@ -26,95 +28,46 @@ var salaryQuery = {
   y: [0, maxSalary],
   name: "Average Salary",
   line: {
-    // color: 'blue',
+    color: 'orange',
     dash: 'dot',
     width: 2,
   }
 };
 
 var data = [salaryHistogram, salaryQuery];
-
-var batchSizes = [];
-for (var i = 1; i < salaryCount+1; i ++) {
-  batchSizes[i] = {
-    label: "" + i,
-    method: 'restyle',
-    args: [],
-  };
-}
-console.log(batchSizes)
-
-Plotly.react('vidapPlot', data, {
-  sliders: [
-  {
-    pad: {
-      t: 20
-    },
-    currentvalue: {
-      xanchor: 'left',
-      prefix: 'Batch Size: ',
-      font: {
-        color: '#888',
-        size: 12
-      }
-    },
-    steps: batchSizes
-    // steps: [{
-    //   label: 'red',
-    //   method: 'restyle',
-    //   args: ['line.color', 'red']
-    // }, {
-    //   label: 'green',
-    //   method: 'restyle',
-    //   args: ['line.color', 'green']
-    // }, {
-    //   label: 'blue',
-    //   method: 'restyle',
-    //   args: ['line.color', 'blue']
-    // }]
-  },
-  {
-    pad: {
-      t: 100
-    },
-    currentvalue: {
-      xanchor: 'left',
-      prefix: 'Budget: ',
-      font: {
-        color: '#888',
-        size: 12
-      }
-    },
-    steps: [{
-      label: 'red',
-      method: 'restyle',
-      args: ['marker.color', 'red']
-    }, {
-      label: 'green',
-      method: 'restyle',
-      args: ['marker.color', 'green']
-    }]
-  },
-  ]
-}, {
-  // staticPlot: true,
+Plotly.react('vidapPlot', data, {}, {
+  staticPlot: false,
 });
 
-// function randomize() {
-//   Plotly.animate('vidapPlot', {
-//     data: [{y: [Math.random(), Math.random(), Math.random()]}],
-//     traces: [0],
-//     layout: {}
-//   }, {
-//     transition: {
-//       duration: 500,
-//       easing: 'cubic-in-out'
-//     },
-//     frame: {
-//       duration: 500
-//     }
-//   })
-// }
+function computeAverage() {
+  var batchSize = document.getElementById('batchSizeSelector').value;
+  var batch = [];
+  // var selected = [];
+  var totalSalary = 0;
+  for (var i = 0; i < batchSize; i++) {
+    var randomValue = salaryValues[Math.floor(Math.random()*salaryValues.length)];
+    batch[i] = randomValue;
+    totalSalary = totalSalary + randomValue;
+  }
+  var queryAverage = totalSalary / batchSize;
+
+  Plotly.animate('vidapPlot', {
+    data: [{
+      x: [queryAverage, queryAverage],
+      y: [0, maxSalary],
+    }],
+    traces: [1],
+    layout: {}
+  }, {
+    transition: {
+      duration: 500,
+      easing: 'cubic-in-out'
+    },
+    frame: {
+      duration: 500
+    }
+  })
+}
 
 var contexts = [
   "Imagine you are in the census bureau and you want to determine the average salary of people in a given region. Configure DAP to compute this average in a privacy-preserving way.",
