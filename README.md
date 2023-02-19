@@ -23,7 +23,7 @@ DAP collectors can configure a measurement task using a couple of high-level par
 There are generally three ways by which we can measure the impact of these parameters:
 
 1. Privacy: TODO
-2. Utility: TODO
+2. Utility: TODO ([relevant](https://www.nist.gov/blogs/cybersecurity-insights/utility-metrics-differential-privacy-no-one-size-fits-all))
 3. Cost: TODO
 
 ## Scenarios
