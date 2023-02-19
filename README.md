@@ -35,7 +35,11 @@ There are generally three ways by which we can measure the impact of these param
 
 ## Questions
 
-- What sort of background do you have in security and privacy?
-- Do you write software for a profession or hobby?
-- Do you deal with or manage data in your professional life?
-- ...?
+- Background
+  - What sort of background do you have in security and privacy?
+  - Do you write software for a profession or hobby?
+  - Do you deal with or manage data in your professional life?
+- Task
+  - Was the task clear?
+  - Can you describe the relationship between privacy and utility?
+  - How much privacy was required in practice?
