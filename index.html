@@ -43,7 +43,6 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
                   <h4 class="modal-title" id="overviewLabel">DAP Overview</h4>
                 </div>
                 <div id="privacyDescription" class="modal-body">
@@ -78,13 +77,23 @@
           <div class="collapse" id="graphs">
             <div id="vidapPlot"></div>
 
-            <!-- TODO(caw): prettify -->
-            <div class="def-number-input number-input safari_only">
-              Batch Size:
-              <input type="range" id="batchSizeSelector" name="volume" min="1" max="11" step="1">
-              <output id="batchSizeValue"></output>
-              <!-- <input id="batchSizeSelector" class="quantity" min="1" max = "8" name="quantity" value="8" step = "1" type="number"> -->
+            <div class="row">
+              <div class="def-number-input number-input safari_only">
+                Batch Size:
+                <input type="range" id="batchSizeSelector" name="volume" min="1" max="11" step="1">
+                <output id="batchSizeValue"></output>
+              </div>
             </div>
+
+            <div class="row">
+              <div class="def-number-input number-input safari_only">
+                Noise:
+                <input type="range" id="noiseSelector" name="volume" min="1" max="10" step="1">
+                <output id="noiseValue"></output>
+              </div>
+            </div>
+
+
             <button class="btn btn-primary" onclick="javascript:computeAverage();">Compute Average</button>
 
             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#resultsModal" aria-expanded="false" aria-controls="resultsModal">
@@ -95,7 +104,6 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="resultsLabel">Summary</h4>
                   </div>
                   <div class="modal-body">

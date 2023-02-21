@@ -100,17 +100,26 @@ function computeAverage() {
 }
 
 var contexts = [
-  "Imagine you are in the census bureau and you want to determine the average salary of people in a given region. Configure DAP to compute this average in a privacy-preserving way.",
+  // "Imagine you are in the census bureau and you want to determine the average salary of people in a given region. Configure DAP to compute this average in a privacy-preserving way.",
   "Imagine you are in the census bureau and you want to determine the average salary of people in a given region. Configure DAP to compute this average such that you cannot learn any one individual’s salary contribution.",
-  "Imagine you are given a list of numbers and you want to determine the average. Configure DAP to do so in a privacy-preserving way.",
-  "Imagine you are given a list of numbers and you want to determine the average. Configure DAP to do so in a privacy-preserving way.",
+  // "Imagine you are given a list of numbers and you want to determine the average. Configure DAP to do so in a privacy-preserving way.",
+  // "Imagine you are given a list of numbers and you want to determine the average. Configure DAP to do so in a privacy-preserving way.",
 ];
 var randomContext = contexts[Math.floor(Math.random()*contexts.length)];
 document.getElementById('contextSetup').innerHTML = randomContext;
 
-const value = document.querySelector("#batchSizeValue")
-const input = document.querySelector("#batchSizeSelector")
-value.textContent = input.value
-input.addEventListener("input", (event) => {
-  value.textContent = event.target.value
+// Batch size visualizer
+const batchValue = document.querySelector("#batchSizeValue")
+const batchInput = document.querySelector("#batchSizeSelector")
+batchValue.textContent = batchInput.value
+batchInput.addEventListener("input", (event) => {
+  batchValue.textContent = event.target.value
+})
+
+// Noise visualizer
+const noiseValue = document.querySelector("#noiseValue")
+const noiseInput = document.querySelector("#noiseSelector")
+noiseValue.textContent = noiseInput.value
+noiseInput.addEventListener("input", (event) => {
+  noiseValue.textContent = event.target.value
 })

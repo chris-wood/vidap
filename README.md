@@ -24,7 +24,6 @@ There are generally three ways by which we can measure the impact of these param
 
 1. Privacy: TODO ([relevant](https://wiki.openrightsgroup.org/wiki/A_Taxonomy_of_Privacy)))
 2. Utility: TODO ([relevant](https://www.nist.gov/blogs/cybersecurity-insights/utility-metrics-differential-privacy-no-one-size-fits-all))
-3. Cost: TODO
 
 ## Scenarios
 
