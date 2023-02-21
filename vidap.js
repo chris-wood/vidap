@@ -105,7 +105,6 @@ function computeAverage() {
       type: 'scatter',
       x: [queryAverage, queryAverage],
       y: [0, maxCount],
-      // name: "Average Salary",
       showlegend: false,
       line: {
         color: 'blue',
