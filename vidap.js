@@ -108,7 +108,7 @@ function computeAverage() {
       // name: "Average Salary",
       showlegend: false,
       line: {
-        color: 'orange',
+        color: 'blue',
         dash: 'dot',
         width: 2,
       }
