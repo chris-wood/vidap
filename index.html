@@ -73,23 +73,62 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col">
           <div class="collapse" id="graphs">
-            <div id="vidapPlot"></div>
 
             <div class="row">
-              <div class="def-number-input number-input safari_only">
-                Batch Size:
-                <input type="range" id="batchSizeSelector" name="volume" min="1" max="11" step="1">
-                <output id="batchSizeValue"></output>
+              <div class="col">
+                <h3>Toggles</h3>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="distributionCheck" checked onclick="distToggle()">
+                  <label class="form-check-label" for="distributionCheck">
+                    Distribution
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="statsCheck" checked>
+                  <label class="form-check-label" for="statsCheck">
+                    Statistics
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="sizeCheck" checked onclick="sizeToggle()">
+                  <label class="form-check-label" for="sizeCheck">
+                    Batch Size
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="noiseCheck" checked onclick="noiseToggle()">
+                  <label class="form-check-label" for="noiseCheck">
+                    Noise
+                  </label>
+                </div>
               </div>
             </div>
 
-            <div class="row">
-              <div class="def-number-input number-input safari_only">
-                Noise:
-                <input type="range" id="noiseSelector" name="volume" min="1" max="10" step="1">
-                <output id="noiseValue"></output>
+            <div id="vidapPlot"></div>
+
+            <div class="row" id="batchSizeView">
+              <div class="col">
+                <div class="def-number-input number-input safari_only">
+                  Batch Size:
+                  <input type="range" id="batchSizeSelector" name="volume" min="1" max="11" step="1">
+                  <output id="batchSizeValue"></output>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" id="noiseView">
+              <div class="col">
+                <div class="def-number-input number-input safari_only">
+                  Noise:
+                  <input type="range" id="noiseSelector" name="volume" min="1" max="10" step="1">
+                  <output id="noiseValue"></output>
+                </div>
               </div>
             </div>
 

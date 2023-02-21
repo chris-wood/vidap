@@ -27,7 +27,7 @@ var salaryQuery = {
   y: [0, maxCount],
   name: "Average Salary",
   line: {
-    color: 'orange',
+    color: 'blue',
     dash: 'dot',
     width: 2,
   }
@@ -45,12 +45,29 @@ var salaryQuery = {
 // };
 // var data = [trace1, trace2];
 
-var data = [salaryHistogram, salaryQuery];
+var dataShowing = true;
+var data = [salaryQuery, salaryHistogram];
 Plotly.react('vidapPlot', data, {}, {
   staticPlot: false,
 });
 
 var mode = Math.random() < 0.5;
+
+function distToggle() {
+  if (dataShowing) {
+    dataShowing = false;
+    var data = [salaryQuery];
+    Plotly.react('vidapPlot', data, {}, {
+      staticPlot: false,
+    });
+  } else {
+    dataShowing = true;
+    var data = [salaryQuery, salaryHistogram];
+    Plotly.react('vidapPlot', data, {}, {
+      staticPlot: false,
+    });
+  }
+}
 
 function computeAverage() {
   var batchSize = document.getElementById('batchSizeSelector').value;
@@ -72,7 +89,7 @@ function computeAverage() {
         x: [queryAverage, queryAverage],
         y: [0, maxCount],
       }],
-      traces: [1],
+      traces: [0],
       layout: {}
     }, {
       transition: {
@@ -115,6 +132,9 @@ batchValue.textContent = batchInput.value
 batchInput.addEventListener("input", (event) => {
   batchValue.textContent = event.target.value
 })
+function sizeToggle() {
+  $("#batchSizeView").toggleClass('d-none');
+}
 
 // Noise visualizer
 const noiseValue = document.querySelector("#noiseValue")
@@ -123,3 +143,6 @@ noiseValue.textContent = noiseInput.value
 noiseInput.addEventListener("input", (event) => {
   noiseValue.textContent = event.target.value
 })
+function noiseToggle() {
+  $("#noiseView").toggleClass('d-none');
+}
