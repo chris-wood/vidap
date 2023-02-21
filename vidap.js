@@ -107,3 +107,10 @@ var contexts = [
 ];
 var randomContext = contexts[Math.floor(Math.random()*contexts.length)];
 document.getElementById('contextSetup').innerHTML = randomContext;
+
+const value = document.querySelector("#batchSizeValue")
+const input = document.querySelector("#batchSizeSelector")
+value.textContent = input.value
+input.addEventListener("input", (event) => {
+  value.textContent = event.target.value
+})

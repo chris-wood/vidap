@@ -43,29 +43,29 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="overviewLabel">Technical Overview</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                  <h4 class="modal-title" id="overviewLabel">DAP Overview</h4>
                 </div>
                 <div id="privacyDescription" class="modal-body">
                   <p>
-                    <a href="https://datatracker.ietf.org/doc/draft-ietf-ppm-dap/">DAP</a> is a system for privacy-preserving measurement. At a high level, DAP consists of users producing measurements, which are sensitive data over which an aggregate function is computed for a collector. With DAP, the collector learns the aggregate data without learning any of the individual inputs to the aggregate. This is privacy-preserving in the sense that individual inputs may be sensitive, but the aggregate output may not be.
+                    <a href="https://datatracker.ietf.org/doc/draft-ietf-ppm-dap/">DAP</a> is a system for privacy-preserving measurement of aggregate data. DAP stands for "Distributed Aggregation Protocol." At a high level, DAP consists of users producing measurements, which are sensitive data over which an aggregate function is computed for a collector. With DAP, the collector learns the aggregate data without learning any of the individual inputs to the aggregate. This is privacy-preserving in the sense that individual inputs may be sensitive, but the aggregate output may not be.
                   </p>
                   <p>
-                    DAP collectors can configure a measurement task using a couple of high-level parameters:
+                    DAP generically supports two types of aggregate functions: (1) statistical aggregates, such as the sum, average, histograms, etc., and (2) heavy hitters, such as finding the most popular strings among a collection of inputs.
+                  </p>
+                  <p>
+                    DAP is oriented around the concepts of measurement tasks. A measurement task is a configuration of DAP designed to compute an aggregate. DAP collectors can configure a measurement task using a couple of high-level parameters:
                   </p>
                   <ul>
-                    <li>Batch size: the number of inputs over which the aggregate will be computed. Higher batch sizes generally yield better privacy, since any one user’s contribution matters less, but come at the expense of more cost.</li>
+                    <li>Batch size: the number of inputs over which the aggregate will be computed. Higher batch sizes generally yield better privacy, since any one user’s contribution matters less, but come at the expense of less timely results.</li>
                     <li>Noise budget: the amount of noise or randomness introduced into the output to hide any one user’s contribution. More noise generally yields better privacy but comes at the expense of utility degradation.</li>
                   </ul>
                   <p>
-                    There are generally three ways by which we can measure the impact of these parameters:
+                    There are generally two ways by which we can measure the impact of these parameters on end-users.
                   </p>
-
-                  <!-- TODO(caw): fill these out -->
                   <ul>
-                    <li>Privacy: TODO</li>
-                    <li>Utility: TODO</li>
-                    <li>Cost: TODO</li>
+                    <li>Privacy: This is a measure of how much protection the aggregate output offers for any one individual user's contribution to the aggregate. In general, more privacy means that it is more difficult for someone to infer any one individual value that was used to compute the aggregate output.</li>
+                    <li>Utility: This is a measure of how useful the aggregate data is. Utility can be measured in terms of accuracy (i.e., how close the true aggregate is the answer?) and timeliness (i.e., how long does it take to collect an aggregate?).</li>
                   </ul>
                 </div>
                 <div class="modal-footer">
@@ -81,7 +81,9 @@
             <!-- TODO(caw): prettify -->
             <div class="def-number-input number-input safari_only">
               Batch Size:
-              <input id="batchSizeSelector" class="quantity" min="1" max = "8" name="quantity" value="8" step = "1" type="number">
+              <input type="range" id="batchSizeSelector" name="volume" min="1" max="11" step="1">
+              <output id="batchSizeValue"></output>
+              <!-- <input id="batchSizeSelector" class="quantity" min="1" max = "8" name="quantity" value="8" step = "1" type="number"> -->
             </div>
             <button class="btn btn-primary" onclick="javascript:computeAverage();">Compute Average</button>
 
